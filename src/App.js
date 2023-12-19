@@ -16,7 +16,7 @@ function App() {
       <Router>
         <Navbar />
           <Switch>
-            <Route path="/basvuru-olustur" component={Apply} />
+            <Route exact path="/basvuru-olustur" component={Apply} />
             <Route path="/404" component={Page404} />
             <Route path="/basvuru-listesi" component={Management} />
             <Route path="/basvuru-sorgula" component={ApplyCheck} />
