@@ -1,8 +1,9 @@
 import { useFormik } from "formik";
+import validations from "../common/validations";
 
 function Apply() {
 
-    const formik = useFormik({
+    const { handleChange, handleSubmit, values, errors, touched, handleBlur } = useFormik({
         initialValues: {
             name: '',
             surname: '',
@@ -15,6 +16,7 @@ function Apply() {
         onSubmit: values => {
             console.log(values);
         },
+        validationSchema: validations,
     });
 
     return (
@@ -31,35 +33,56 @@ function Apply() {
                     <div className="col-lg-6">
                         <div className="bg-primary h-100 d-flex flex-column justify-content-center text-center p-5 wow zoomIn" data-wow-delay="0.6s">
                             <h1 className="text-white mb-4">Hemen Başvur</h1>
-                            <form onSubmit={formik.handleSubmit}>
+                            <form onSubmit={handleSubmit}>
                                 <div className="row g-3">
                                     <div className="col-12 col-sm-6">
                                         <input type="text" name="name" className="form-control border-0" placeholder="Ad"
-                                            onChange={formik.handleChange} value={formik.values.name} />
+                                            onChange={handleChange} value={values.name} onBlur={handleBlur} />
+                                        {
+                                            errors.name && touched.name && <small style={{ textDecoration: 'underline', textDecorationColor: '#0B2154', color: 'white' }}>{errors.name}</small>
+                                        }
                                     </div>
                                     <div className="col-12 col-sm-6">
                                         <input type="text" name="surname" className="form-control border-0" placeholder="Soyad"
-                                            onChange={formik.handleChange} value={formik.values.surname} />
+                                            onChange={handleChange} value={values.surname} onBlur={handleBlur} />
+                                        {
+                                            errors.surname && touched.surname && <small style={{ textDecoration: 'underline', textDecorationColor: '#0B2154', color: 'white' }}>{errors.surname}</small>
+                                        }
                                     </div>
                                     <div className="col-12 col-sm-6">
                                         <input type="number" name="age" className="form-control border-0" placeholder="Yaş"
-                                            onChange={formik.handleChange} value={formik.values.age} />
+                                            onChange={handleChange} value={values.age} onBlur={handleBlur} />
+                                        {
+                                            errors.age && touched.age && <small style={{ textDecoration: 'underline', textDecorationColor: '#0B2154', color: 'white' }}>{errors.age}</small>
+                                        }
                                     </div>
                                     <div className="col-12 col-sm-6">
                                         <input type="number" name="identityID" className="form-control border-0" placeholder="TC Kimlik No"
-                                            onChange={formik.handleChange} value={formik.values.identityID} />
+                                            onChange={handleChange} value={values.identityID} onBlur={handleBlur} />
+                                        {
+                                            errors.identityID && touched.identityID && <small style={{ textDecoration: 'underline', textDecorationColor: '#0B2154', color: 'white' }}>{errors.identityID}</small>
+                                        }
                                     </div>
                                     <div className="col-12">
                                         <input type="email" name="email" className="form-control border-0" placeholder="Email"
-                                            onChange={formik.handleChange} value={formik.values.email} />
+                                            onChange={handleChange} value={values.email} onBlur={handleBlur} />
+                                        {
+                                            errors.email && touched.email && <small style={{ textDecoration: 'underline', textDecorationColor: '#0B2154', color: 'white' }}>{errors.email}</small>
+                                        }
                                     </div>
                                     <div className="col-12">
                                         <input type="text" name="reasonForApp" className="form-control border-0" placeholder="Başvuru Nedeni"
-                                            onChange={formik.handleChange} value={formik.values.reasonForApp} />
+                                            onChange={handleChange} value={values.reasonForApp} onBlur={handleBlur} />
+                                        {
+                                            errors.reasonForApp && touched.reasonForApp && <small style={{ textDecoration: 'underline', textDecorationColor: '#0B2154', color: 'white' }}>{errors.reasonForApp}</small>
+                                        }
                                     </div>
                                     <div className="col-12">
                                         <input type="text" name="address" className="form-control border-0" placeholder="Adres"
-                                            onChange={formik.handleChange} value={formik.values.address} />
+                                            onChange={handleChange} value={values.address} onBlur={handleBlur} />
+                                        {
+                                            errors.address && touched.address && <small style={{ textDecoration: 'underline', textDecorationColor: '#0B2154', color: 'white' }}>{errors.address}</small>
+                                        }
                                     </div>
                                     <div className="col-12">
                                         <button className="btn btn-secondary w-100 py-3" type="submit">Başvur</button>
