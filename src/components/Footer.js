@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom/cjs/react-router-dom";
+
 function Footer() {
     return (
         <>
-
             <div className="container-xxl py-5">
                 <div className="container">
                     <div className="row g-4">
@@ -43,11 +44,12 @@ function Footer() {
                             <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
                                 &copy;
 
-                                Designed By <a className="border-bottom" href="https://github.com/duhayildirim">Duha Yıldırım</a>
+                                Designed By <a className="border-bottom" href="https://github.com/duhayildirim" target="_blank">Duha Yıldırım</a>
                             </div>
                             <div className="col-md-6 text-center text-md-end">
                                 <div className="footer-menu">
-                                    <a href="">Başvurularım</a>
+                                    <Link to="/basvuru-olustur">Başvuru Oluştur</Link>
+                                    <Link to="/basvuru-sorgula">Başvuru Sorgula</Link>
                                 </div>
                             </div>
                         </div>
