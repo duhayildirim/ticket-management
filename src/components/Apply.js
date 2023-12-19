@@ -1,4 +1,22 @@
+import { useFormik } from "formik";
+
 function Apply() {
+
+    const formik = useFormik({
+        initialValues: {
+            name: '',
+            surname: '',
+            age: '',
+            identityID: '',
+            email: '',
+            reasonForApp: '',
+            address: ''
+        },
+        onSubmit: values => {
+            console.log(values);
+        },
+    });
+
     return (
         <div className="container-fluid bg-secondary booking my-5 wow fadeInUp" data-wow-delay="0.1s">
             <div className="container">
@@ -12,29 +30,36 @@ function Apply() {
                     </div>
                     <div className="col-lg-6">
                         <div className="bg-primary h-100 d-flex flex-column justify-content-center text-center p-5 wow zoomIn" data-wow-delay="0.6s">
-                            <h1 className="text-white mb-4">Hemen Başvuru</h1>
-                            <form>
+                            <h1 className="text-white mb-4">Hemen Başvur</h1>
+                            <form onSubmit={formik.handleSubmit}>
                                 <div className="row g-3">
                                     <div className="col-12 col-sm-6">
-                                        <input type="text" className="form-control border-0" placeholder="Ad" />
+                                        <input type="text" name="name" className="form-control border-0" placeholder="Ad"
+                                            onChange={formik.handleChange} value={formik.values.name} />
                                     </div>
                                     <div className="col-12 col-sm-6">
-                                        <input type="text" className="form-control border-0" placeholder="Soyad" />
+                                        <input type="text" name="surname" className="form-control border-0" placeholder="Soyad"
+                                            onChange={formik.handleChange} value={formik.values.surname} />
                                     </div>
                                     <div className="col-12 col-sm-6">
-                                        <input type="number" className="form-control border-0" placeholder="Yaş" />
+                                        <input type="number" name="age" className="form-control border-0" placeholder="Yaş"
+                                            onChange={formik.handleChange} value={formik.values.age} />
                                     </div>
                                     <div className="col-12 col-sm-6">
-                                        <input type="number" className="form-control border-0" placeholder="TC Kimlik No" />
+                                        <input type="number" name="identityID" className="form-control border-0" placeholder="TC Kimlik No"
+                                            onChange={formik.handleChange} value={formik.values.identityID} />
                                     </div>
                                     <div className="col-12">
-                                        <input type="email" className="form-control border-0" placeholder="Email" />
+                                        <input type="email" name="email" className="form-control border-0" placeholder="Email"
+                                            onChange={formik.handleChange} value={formik.values.email} />
                                     </div>
                                     <div className="col-12">
-                                        <input type="text" className="form-control border-0" placeholder="Başvuru Nedeni" />
+                                        <input type="text" name="reasonForApp" className="form-control border-0" placeholder="Başvuru Nedeni"
+                                            onChange={formik.handleChange} value={formik.values.reasonForApp} />
                                     </div>
                                     <div className="col-12">
-                                        <input type="text" className="form-control border-0" placeholder="Adres" />
+                                        <input type="text" name="address" className="form-control border-0" placeholder="Adres"
+                                            onChange={formik.handleChange} value={formik.values.address} />
                                     </div>
                                     <div className="col-12">
                                         <button className="btn btn-secondary w-100 py-3" type="submit">Başvur</button>
