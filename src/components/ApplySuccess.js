@@ -1,6 +1,10 @@
+import { useRef } from 'react';
+
 function ApplySuccess() {
+    const applyCodeRef = useRef(null);
+
     const handleCopyClick = () => {
-        const code = document.querySelector('.apply-code').textContent;
+        const code = applyCodeRef.current.textContent;
 
         navigator.clipboard.writeText(code)
             .then(() => {
