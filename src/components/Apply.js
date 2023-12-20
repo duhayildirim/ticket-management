@@ -1,23 +1,28 @@
 import { useFormik } from "formik";
-import validations from "../common/validations";
+import { applyValidations } from "../common/validations";
+import codeGenerator from "../common/codeGenerator"
 
 function Apply() {
 
     const { handleChange, handleSubmit, values, errors, touched, handleBlur } = useFormik({
         initialValues: {
-            name: '',
-            surname: '',
-            age: '',
-            identityID: '',
-            email: '',
-            reasonForApp: '',
-            address: ''
+            name: 'Duha',
+            surname: 'Yıldırım',
+            age: '38',
+            identityID: '69556922457',
+            email: 'duhayildirim@gmail.com',
+            reasonForApp: 'uçak bileti erteleme talebi',
+            address: 'merkez/ elazığ'
         },
         onSubmit: values => {
             console.log(values);
+            const generatedCode = codeGenerator();
+            console.log(generatedCode)
         },
-        validationSchema: validations,
+        validationSchema: applyValidations,
     });
+
+    // console.log(errors)
 
     return (
         <div className="container-fluid bg-secondary booking my-5 wow fadeInUp" data-wow-delay="0.1s">

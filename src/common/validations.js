@@ -1,8 +1,8 @@
 import * as yup from "yup";
 
-const validations = yup.object().shape({
-    name: yup.string().matches(/^[a-zA-Z ]*$/, 'Geçersiz ad').required('Ad boş bırakılamaz.'),
-    surname: yup.string().matches(/^[a-zA-Z ]*$/, 'Geçersiz ad').required('Soyad boş bırakılamaz.'),
+const applyValidations = yup.object().shape({
+    name: yup.string().matches(/^[a-zA-ZığüşöçĞÜŞÖÇİ ]*$/, 'Geçersiz ad').required('Ad boş bırakılamaz.'),
+    surname: yup.string().matches(/^[a-zA-ZığüşöçĞÜŞÖÇİ ]*$/, 'Geçersiz soyad').required('Soyad boş bırakılamaz.'),
     age: yup.number().required('Yaş boş bırakılamaz.').positive('Geçersiz değer')
         .min(16, '16 yaşından küçükler başvuru yapamaz').max(120),
     identityID: yup.number().required('TC Kimlik boş bırakılamaz.').positive('Geçersiz değer')
@@ -13,4 +13,9 @@ const validations = yup.object().shape({
     address: yup.string().required('Adres boş bırakılamaz.'),
 });
 
-export default validations;
+const loginValidations = yup.object().shape({
+    username: yup.string().required('Kullanıcı adı boş bırakılamaz'),
+    password: yup.string().required('Şifre boş bırakılamaz')
+});
+
+export { applyValidations, loginValidations };
