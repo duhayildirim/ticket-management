@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom/cjs/react-router-dom";
+import { Link } from 'react-router-dom/cjs/react-router-dom';
 
 function Footer() {
     return (
@@ -44,7 +44,7 @@ function Footer() {
                             <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
                                 &copy;
 
-                                Designed By <a className="border-bottom" href="https://github.com/duhayildirim" target="_blank">Duha Yıldırım</a>
+                                Designed By <a className="border-bottom" href="https://github.com/duhayildirim" target="_blank" rel="noreferrer">Duha Yıldırım</a>
                             </div>
                             <div className="col-md-6 text-center text-md-end">
                                 <div className="footer-menu">
@@ -59,7 +59,7 @@ function Footer() {
 
             <a href="#" className="btn btn-lg btn-primary btn-lg-square back-to-top"><i className="bi bi-arrow-up"></i></a>
         </>
-    )
-};
+    );
+}
 
 export default Footer;

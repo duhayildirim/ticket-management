@@ -1,5 +1,5 @@
-import { useFormik } from "formik";
-import { loginValidations } from "../common/validations";
+import { useFormik } from 'formik';
+import { loginValidations } from '../common/validations';
 
 function Login() {
     const { handleChange, handleSubmit, values, errors, touched, handleBlur } = useFormik({
@@ -92,7 +92,7 @@ function Login() {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 export default Login;

@@ -14,7 +14,7 @@ function ApplyCheck() {
                                         <div className="col-md-12">
                                             <div className="form-floating">
                                                 <input type="text" className="form-control" id="name" placeholder="ucXfE4955YU89" />
-                                                <label for="name">Kodunu gir:</label>
+                                                <label htmlFor="name">Kodunu gir:</label>
                                             </div>
                                         </div>
                                         <div className="col-md-5">
@@ -89,7 +89,7 @@ function ApplyCheck() {
                 </div>
             </div>
         </>
-    )
+    );
 }
 
 export default ApplyCheck;

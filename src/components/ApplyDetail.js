@@ -1,5 +1,5 @@
-import { useFormik } from "formik";
-import { adminMessageValidations } from "../common/validations";
+import { useFormik } from 'formik';
+import { adminMessageValidations } from '../common/validations';
 
 function ApplyDetail() {
     const { handleChange, handleSubmit, values, errors, touched, handleBlur } = useFormik({
@@ -8,10 +8,10 @@ function ApplyDetail() {
             status: 'reddedildi'
         },
         onSubmit: values => {
-            console.log(values)
+            console.log(values);
         },
         validationSchema: adminMessageValidations,
-    })
+    });
 
 
     return (
@@ -54,10 +54,10 @@ function ApplyDetail() {
                                                     <label className="mb-2" htmlFor="status">Başvuru durumunu güncelle:</label>
                                                     <div>
                                                         <select name="status" className="form-select border-0 ml-5"
-                                                         onChange={handleChange} defaultValue={"reddedildi"}>
-                                                            <option value={"inceleniyor"}>İnceleniyor</option>
-                                                            <option value={"reddedildi"}>Reddedildi</option>
-                                                            <option value={"onaylandı"}>Onaylandı</option>
+                                                            onChange={handleChange} defaultValue={'reddedildi'}>
+                                                            <option value={'inceleniyor'}>İnceleniyor</option>
+                                                            <option value={'reddedildi'}>Reddedildi</option>
+                                                            <option value={'onaylandı'}>Onaylandı</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -74,7 +74,7 @@ function ApplyDetail() {
                 </div>
             </div>
         </>
-    )
+    );
 }
 
 export default ApplyDetail;

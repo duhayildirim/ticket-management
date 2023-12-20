@@ -30,7 +30,7 @@ function Management() {
                 </div>
             </div>
         </>
-    )
+    );
 }
 
 export default Management;

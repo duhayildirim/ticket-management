@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom/cjs/react-router-dom";
+import { Link } from 'react-router-dom/cjs/react-router-dom';
 
 function Navbar() {
     return (
@@ -18,7 +18,7 @@ function Navbar() {
                 </div>
             </nav>
         </>
-    )
-};
+    );
+}
 
 export default Navbar;

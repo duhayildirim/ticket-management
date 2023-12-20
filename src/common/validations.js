@@ -1,4 +1,4 @@
-import * as yup from "yup";
+import * as yup from 'yup';
 
 const applyValidations = yup.object().shape({
     name: yup.string().matches(/^[a-zA-ZığüşöçĞÜŞÖÇİ ]*$/, 'Geçersiz ad').required('Ad boş bırakılamaz.'),
