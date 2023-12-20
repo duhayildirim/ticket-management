@@ -14,7 +14,7 @@ export const ApplicationProvider = ({ children }) => {
             address: 'Merkez/ Elazığ',
             code: '',
             message: '',
-            status: ''
+            status: 'inceleniyor'
         },
         {
             name: 'Mehmet',
@@ -26,7 +26,7 @@ export const ApplicationProvider = ({ children }) => {
             address: 'Keçiören/ Ankara',
             code: '',
             message: '',
-            status: ''
+            status: 'inceleniyor'
         },
         {
             name: 'Melisa',
@@ -38,7 +38,7 @@ export const ApplicationProvider = ({ children }) => {
             address: 'Alanya/ Antalya',
             code: '',
             message: '',
-            status: ''
+            status: 'inceleniyor'
         },
     ]);
 
