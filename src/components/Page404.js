@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom/cjs/react-router-dom';
+
 function Page404() {
     return (
         <>
@@ -9,7 +11,8 @@ function Page404() {
                             <h1 className="display-1">404</h1>
                             <h1 className="mb-4">İlgili İçerik Bulunamadı</h1>
                             <p className="mb-4">Üzgünüz, aradığınız sayfa web sitemizde mevcut değil! Belki ana sayfamıza gidebilir veya farklı bir arama kullanmayı deneyebilirsiniz?</p>
-                            <a className="btn btn-primary rounded-pill py-3 px-5" href="">Anasayfaya dön</a>
+                            <Link className="btn btn-primary rounded-pill py-3 px-5" to="/basvuru-olustur">Başvuru Oluştur</Link>
+                            <Link className="btn btn-primary rounded-pill py-3 px-5 mt-3" to="/basvuru-sorgula">Başvuru Sorgula</Link>
                         </div>
                     </div>
                 </div>

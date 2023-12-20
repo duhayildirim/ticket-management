@@ -1,4 +1,3 @@
-import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom/cjs/react-router-dom';
 import Apply from './components/Apply';
 import ApplyCheck from './components/ApplyCheck';
@@ -17,12 +16,12 @@ function App() {
                 <Navbar />
                 <Switch>
                     <Route exact path="/basvuru-olustur" component={Apply} />
-                    <Route path="/404" component={Page404} />
                     <Route path="/basvuru-listesi" component={Management} />
                     <Route path="/basvuru-sorgula" component={ApplyCheck} />
                     <Route path="/admin" component={Login} />
                     <Route path="/basvuru-detay" component={ApplyDetail} />
                     <Route path="/basvuru-basarili" component={ApplySuccess} />
+                    <Route path="*" component={Page404} />
                 </Switch>
                 <Footer />
             </Router>

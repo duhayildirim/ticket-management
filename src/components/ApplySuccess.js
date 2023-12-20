@@ -24,7 +24,7 @@ function ApplySuccess() {
                             <h1 className="text-white mb-4">Başvurunu aldık  <i style={{ marginLeft: '5px' }} className="fa fa-check"></i> </h1>
                             <p className="text-white mb-4">Aşağıda bulunan başvuru kodunu kopyalayıp; -Başvuru Sorgula- sekmesinde aratarak, başvurunun son durumunu görebilirsin.</p>
                             <div className="d-flex align-items-center">
-                                <h3 className="text-white apply-code mt-1">usdfdsf:ASDASDsd</h3>
+                                <h3 className="text-white apply-code mt-1" ref={applyCodeRef}>usdfdsf:ASDASDsd</h3>
                                 <button className="btn-xs btn-primary" style={{ marginLeft: '5px' }} type="button" onClick={handleCopyClick}>
                                     <i className="fa fa-copy"></i>
                                 </button>
