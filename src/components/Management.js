@@ -1,4 +1,9 @@
+import { useApply } from '../context/ApplicationContext';
+
 function Management() {
+    const applications = useApply();
+    console.log(applications);
+
     return (
         <>
             <div className="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">

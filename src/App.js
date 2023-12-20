@@ -8,23 +8,26 @@ import Navbar from './components/Navbar';
 import Page404 from './components/Page404';
 import ApplyDetail from './components/ApplyDetail';
 import ApplySuccess from './components/ApplySuccess';
+import { ApplicationProvider } from './context/ApplicationContext';
 
 function App() {
     return (
         <>
-            <Router>
-                <Navbar />
-                <Switch>
-                    <Route exact path="/basvuru-olustur" component={Apply} />
-                    <Route path="/basvuru-listesi" component={Management} />
-                    <Route path="/basvuru-sorgula" component={ApplyCheck} />
-                    <Route path="/admin" component={Login} />
-                    <Route path="/basvuru-detay" component={ApplyDetail} />
-                    <Route path="/basvuru-basarili" component={ApplySuccess} />
-                    <Route path="*" component={Page404} />
-                </Switch>
-                <Footer />
-            </Router>
+            <ApplicationProvider>
+                <Router>
+                    <Navbar />
+                    <Switch>
+                        <Route exact path="/basvuru-olustur" component={Apply} />
+                        <Route path="/basvuru-listesi" component={Management} />
+                        <Route path="/basvuru-sorgula" component={ApplyCheck} />
+                        <Route path="/admin" component={Login} />
+                        <Route path="/basvuru-detay" component={ApplyDetail} />
+                        <Route path="/basvuru-basarili" component={ApplySuccess} />
+                        <Route path="*" component={Page404} />
+                    </Switch>
+                    <Footer />
+                </Router>
+            </ApplicationProvider>
         </>
     );
 }
