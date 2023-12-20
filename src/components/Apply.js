@@ -22,8 +22,6 @@ function Apply() {
         validationSchema: applyValidations,
     });
 
-    // console.log(errors)
-
     return (
         <div className="container-fluid bg-secondary booking my-5 wow fadeInUp" data-wow-delay="0.1s">
             <div className="container">

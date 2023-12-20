@@ -18,7 +18,7 @@ const loginValidations = yup.object().shape({
     password: yup.string().required('Şifre boş bırakılamaz')
 });
 
-const adminMessageValidations = yub.object()..shape({
+const adminMessageValidations = yup.object().shape({
     message: yup.string().required('Kullanıcıya bir ileti yazın.'),
 });
 

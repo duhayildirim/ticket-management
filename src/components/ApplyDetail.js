@@ -1,4 +1,19 @@
+import { useFormik } from "formik";
+import { adminMessageValidations } from "../common/validations";
+
 function ApplyDetail() {
+    const { handleChange, handleSubmit, values, errors, touched, handleBlur } = useFormik({
+        initialValues: {
+            message: 'Örnek: Başvurunuz güvenlik sebebiyle reddedilmiştir.',
+            status: 'reddedildi'
+        },
+        onSubmit: values => {
+            console.log(values)
+        },
+        validationSchema: adminMessageValidations,
+    })
+
+
     return (
         <>
             <div className="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
@@ -21,21 +36,28 @@ function ApplyDetail() {
                             <div className="testimonial-text bg-light text-center p-4">
                                 <div className="col-md-12">
                                     <div className="wow fadeInUp" data-wow-delay="0.2s">
-                                        <form>
+                                        <form onSubmit={handleSubmit}>
                                             <div className="row g-3">
                                                 <div className="col-md-6">
-                                                    <label className="mb-2" for="message">Başvuru sahibine mesaj gönder:</label>
+                                                    <label className="mb-2" htmlFor="message">Başvuru sahibine mesaj gönder:</label>
                                                     <div>
-                                                        <textarea name="message" type="text" className="form-control" />
+                                                        <textarea name="message" type="text" className="form-control"
+                                                            onChange={handleChange} value={values.message} onBlur={handleBlur} />
                                                     </div>
+                                                    {
+                                                        errors.message && touched.message && <small style={{ textDecoration: 'underline', textDecorationColor: '#0B2154', color: '#b8101f' }}>
+                                                            {errors.message}
+                                                        </small>
+                                                    }
                                                 </div>
                                                 <div className="col-md-4 mr-4">
-                                                    <label className="mb-2" for="status">Başvuru durumunu güncelle:</label>
+                                                    <label className="mb-2" htmlFor="status">Başvuru durumunu güncelle:</label>
                                                     <div>
-                                                        <select name="status" className="form-select border-0 ml-5">
-                                                            <option selected value={"inceleniyor"}>İnceleniyor</option>
-                                                            <option value={"Reddedildi"}>Reddedildi</option>
-                                                            <option value={"Onaylandı"}>Onaylandı</option>
+                                                        <select name="status" className="form-select border-0 ml-5"
+                                                         onChange={handleChange} defaultValue={"reddedildi"}>
+                                                            <option value={"inceleniyor"}>İnceleniyor</option>
+                                                            <option value={"reddedildi"}>Reddedildi</option>
+                                                            <option value={"onaylandı"}>Onaylandı</option>
                                                         </select>
                                                     </div>
                                                 </div>
