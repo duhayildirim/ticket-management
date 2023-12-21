@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom/cjs/react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom/cjs/react-router-dom';
 import Apply from './components/Apply';
 import ApplyCheck from './components/ApplyCheck';
 import Footer from './components/Footer';
@@ -17,6 +17,7 @@ function App() {
                 <Router>
                     <Navbar />
                     <Switch>
+                        <Redirect exact from="/" to="/basvuru-olustur" />
                         <Route exact path="/basvuru-olustur" component={Apply} />
                         <Route path="/basvuru-listesi" component={Management} />
                         <Route path="/basvuru-sorgula" component={ApplyCheck} />

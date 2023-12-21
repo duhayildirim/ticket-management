@@ -11,8 +11,8 @@ function Page404() {
                             <h1 className="display-1">404</h1>
                             <h1 className="mb-4">İlgili İçerik Bulunamadı</h1>
                             <p className="mb-4">Üzgünüz, aradığınız sayfa web sitemizde mevcut değil! Belki ana sayfamıza gidebilir veya farklı bir arama kullanmayı deneyebilirsiniz?</p>
-                            <Link className="btn btn-primary rounded-pill py-3 px-5" to="/basvuru-olustur">Başvuru Oluştur</Link>
-                            <Link className="btn btn-primary rounded-pill py-3 px-5 mt-3" to="/basvuru-sorgula">Başvuru Sorgula</Link>
+                            <Link style={{marginRight: '10px'}} className="btn btn-primary rounded-pill py-3 px-3" to="/basvuru-olustur">Başvuru Oluştur</Link>
+                            <Link style={{marginLeft: '10px'}} className="btn btn-primary rounded-pill py-3 px-3" to="/basvuru-sorgula">Başvuru Sorgula</Link>
                         </div>
                     </div>
                 </div>
