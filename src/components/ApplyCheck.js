@@ -1,4 +1,45 @@
+import { useApply } from '../context/ApplicationContext';
+import { useState } from 'react';
+import { useFormik } from 'formik';
+import { useHistory } from 'react-router-dom';
+
 function ApplyCheck() {
+    const [ showErr, setShowErr] = useState(false);
+    const [ filteredData, setFilteredData ] = useState();
+    const { applications } = useApply();
+    const history = useHistory();
+
+    const { handleChange, handleSubmit, values } = useFormik({
+        initialValues: {
+            search: ''
+        },
+        onSubmit: values => {
+            if(values.search.length > 0){
+                setShowErr(false);
+                const result = applications.filter((app) => {
+                    return app.code.includes(values.search);
+                });
+                if(result[0]){
+                    setFilteredData(result[0]);
+                } else {
+                    history.push('/error');
+                }
+            } else {
+                setShowErr(true);
+            }
+        }
+    });
+
+    function renderStatusMessage() {
+        if (filteredData.status === 'inceleniyor') {
+            return 'Başvurun inceleniyor, bir süre sonra tekrar kontrol et.';
+        } else if (filteredData.status === 'onaylandı') {
+            return 'Tebrikler, Başvurun onaylandı.';
+        } else {
+            return 'Üzgünüz, Başvuruna olumlu yanıt veremiyoruz.';
+        }
+    }
+
     return (
         <>
             <div className="container-xxl py-5">
@@ -8,14 +49,19 @@ function ApplyCheck() {
                     </div>
                     <div className="row g-4">
                         <div className="col-md-12">
-                            <div className="wow fadeInUp" data-wow-delay="0.2s">
-                                <form>
+                            <form onSubmit={handleSubmit}>
+                                <div className="wow fadeInUp" data-wow-delay="0.2s">
                                     <div className="row g-3">
                                         <div className="col-md-12">
                                             <div className="form-floating">
-                                                <input type="text" className="form-control" id="name" placeholder="ucXfE4955YU89" />
-                                                <label htmlFor="name">Kodunu gir:</label>
+                                                <input type="text"  className="form-control" name="search" id="search" value={values.search} onChange={handleChange}/>
+                                                <label htmlFor="search">Kodunu  gir:</label>
                                             </div>
+                                            {
+                                                showErr == true && (<small style={{ textDecoration: 'underline', textDecorationColor: '#0B2154', color: '#b8101f' }}>
+                                                Lütfen size verilen kodu girin.
+                                                </small>)
+                                            }
                                         </div>
                                         <div className="col-md-5">
                                         </div>
@@ -25,69 +71,74 @@ function ApplyCheck() {
                                         <div className="col-md-5">
                                         </div>
                                     </div>
-                                </form>
-                            </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="container">
-                <div className="row">
-                    <div className="col-md-5">
-                    </div>
-                    <div className="col-md-2">
-                        <div id="spinner" className="show bg-white translate-middle">
-                            <div className="spinner-border text-primary" role="status">
-                                <span className="sr-only">Loading...</span>
+            {
+                filteredData ? (
+                    <div className="container-xxl service py-2">
+                        <div className="container">
+                            <div className="text-center wow fadeInUp" data-wow-delay="0.1s">
+                                <h6 className="text-primary text-uppercase">// {filteredData.code} //</h6>
+                                <h1 className="mb-4">Başvuru sahibi: {filteredData.name} {filteredData.surname}</h1>
                             </div>
-                        </div>
-                    </div>
-                    <div className="col-md-5">
-                    </div>
-                </div>
-            </div>
-            <div className="container-xxl service py-5">
-                <div className="container">
-                    <div className="text-center wow fadeInUp" data-wow-delay="0.1s">
-                        <h6 className="text-primary text-uppercase">// Kodu //</h6>
-                        <h1 className="mb-5">Başvuru sahibi: Duha Yıldırım</h1>
-                    </div>
-                    <div className="row g-4 wow fadeInUp" data-wow-delay="0.3s">
-                        <div className="col-lg-4">
-                            <div className="nav w-100 nav-pills me-4">
-                                <button className="nav-link w-100 d-flex align-items-center text-start p-4 mb-4 active" data-bs-toggle="pill" data-bs-target="#tab-pane-1" type="button">
-                                    <i className="fa fa-eye fa-2x me-3"></i>
-                                    <h4 className="m-0">İnceleniyor</h4>
-                                </button>
-                                <button className="nav-link w-100 d-flex align-items-center text-start p-4 mb-4" data-bs-toggle="pill" data-bs-target="#tab-pane-2" type="button">
-                                    <i className="fa fa-times fa-2x me-3"></i>
-                                    <h4 className="m-0">Reddedildi</h4>
-                                </button>
-                                <button className="nav-link w-100 d-flex align-items-center text-start p-4 mb-4" data-bs-toggle="pill" data-bs-target="#tab-pane-3" type="button">
-                                    <i className="fa fa-check fa-2x me-3"></i>
-                                    <h4 className="m-0">Onaylandı</h4>
-                                </button>
-                            </div>
-                        </div>
-                        <div className="col-lg-8">
-                            <div className="tab-content w-100">
-                                <div className="tab-pane fade show active" id="tab-pane-1">
-                                    <div className="row g-4">
-                                        <div className="col-md-12">
-                                            <h3 className="mb-3">Başvurun inceleniyor en kısa zamanda tekrar kontrol et.</h3>
-                                            <p className="mb-4"><strong className="text-primary text-uppercase"> Adminin Mesajı: </strong> Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
-                                            <p>Başvuru nedeni: Quality Servicing</p>
-                                            <p>Email:</p>
-                                            <p>TC:</p>
-                                            <p>Adres:</p>
+                            <div className="row g-4 wow fadeInUp d-flex justify-content-center" data-wow-delay="0.3s">
+                                <div className="col-lg-4">
+                                    <div className="nav w-100 nav-pills me-4">
+                                        <button className={`nav-link w-100 d-flex align-items-center text-start p-4 mb-4 ${filteredData.status === 'inceleniyor' ? 'active' : ''}`}>
+                                            <i className="fa fa-eye fa-2x me-3"></i>
+                                            <h4 className="m-0">İnceleniyor</h4>
+                                        </button>
+                                        <button className={`nav-link w-100 d-flex align-items-center text-start p-4 mb-4 ${filteredData.status === 'onaylandı' ? 'active' : ''}`}>
+                                            <i className="fa fa-check fa-2x me-3"></i>
+                                            <h4 className="m-0">Onaylandı</h4>
+                                        </button>
+                                        <button className={`nav-link w-100 d-flex align-items-center text-start p-4 mb-4 ${filteredData.status === 'reddedildi' ? 'active' : ''}`}>
+                                            <i className="fa fa-times fa-2x me-3"></i>
+                                            <h4 className="m-0">Reddedildi</h4>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className="col-lg-5">
+                                    <div className="tab-content w-100">
+                                        <div className="tab-pane fade show active" id="tab-pane-1">
+                                            <div className="row g-4">
+                                                <div className="col-md-12">
+                                                    <h3 className="mb-3">{renderStatusMessage()}</h3>
+                                                    <p className="mb-4"><strong className="text-primary text-uppercase"> Adminin Mesajı: </strong> {filteredData.message ? filteredData.message : 'Adminden henüz bir mesaj yok.'} </p>
+                                                    <p> <strong>Başvuru nedeni: </strong>{filteredData.reasonForApp}</p>
+                                                    <p> <strong>Email: </strong>{filteredData.email}</p>
+                                                    <p> <strong>TC: </strong>{filteredData.identityID}</p>
+                                                    <p> <strong>Adres: </strong>{filteredData.address}</p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                ) : (
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-md-5">
+                            </div>
+                            <div className="col-md-2">
+                                <div id="spinner" className="show bg-white translate-middle">
+                                    <div className="spinner-border text-primary" role="status">
+                                        <span className="sr-only">Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-5">
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
         </>
     );
 }

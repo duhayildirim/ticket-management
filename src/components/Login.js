@@ -28,7 +28,7 @@ function Login() {
                             <div className="col-md-4">
                                 <div className="bg-light d-flex flex-column justify-content-center p-4">
                                     <h5 className="text-uppercase">// Admin info: //</h5>
-                                    <p className="m-0"><i className="fa fa-envelope-open text-primary me-2"></i>kodluyoruz</p>
+                                    <p className="m-0"><i className="fa fa-user text-primary me-2"></i>kodluyoruz</p>
                                     <p className="m-0"><i className="fa fa-lock text-primary me-2"></i>bootcamp109</p>
                                 </div>
                             </div>
@@ -77,13 +77,10 @@ function Login() {
                                             </small>
                                         )}
                                     </div>
-
                                     <div className="col-md-5"></div>
-
                                     <div className="col-2">
                                         <button className="btn btn-primary w-100 py-3" type="submit">Giriş Yap</button>
                                     </div>
-
                                     <div className="col-md-5"></div>
                                 </div>
                             </form>

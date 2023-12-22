@@ -20,7 +20,7 @@ function Management() {
                                             <div className="row g-3">
                                                 <h6 className="mb-1 text-center">{app.name} {app.surname}</h6>
                                                 <div className="col-md-9">
-                                                    <p><strong>Kod: </strong>uXfe8955FG5f.</p>
+                                                    <p><strong>Kod: </strong>{app.code}</p>
                                                     <p><strong>Başvuru nedeni: </strong>{app.reasonForApp}</p>
                                                     <p><strong style={{color: 'red'}}>Başvuru durumu: </strong>{app.status}</p>
                                                 </div>

@@ -1,8 +1,12 @@
 import { useFormik } from 'formik';
 import { applyValidations } from '../common/validations';
 import codeGenerator from '../common/codeGenerator';
+import { useApply } from '../context/ApplicationContext';
+import { useHistory } from 'react-router-dom';
 
 function Apply() {
+    const { setApplications } = useApply();
+    const history = useHistory();
 
     const { handleChange, handleSubmit, values, errors, touched, handleBlur } = useFormik({
         initialValues: {
@@ -15,9 +19,15 @@ function Apply() {
             address: 'merkez/ elazığ'
         },
         onSubmit: values => {
-            console.log(values);
             const generatedCode = codeGenerator();
-            console.log(generatedCode);
+            const newApplication = {
+                ...values,
+                code: generatedCode,
+                message: '',
+                status: 'inceleniyor'
+            };
+            setApplications(prev => [...prev, newApplication]);
+            history.push('/basvuru-basarili', { code: generatedCode });
         },
         validationSchema: applyValidations,
     });
