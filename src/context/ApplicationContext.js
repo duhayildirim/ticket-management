@@ -7,14 +7,14 @@ export const ApplicationProvider = ({ children }) => {
         {
             name: 'Duha',
             surname: 'Yıldırım',
-            age: '38',
+            age: '26',
             identityID: '69556922457',
             email: 'duhayildirim@gmail.com',
             reasonForApp: 'Uçak bileti erteleme talebi',
             address: 'Merkez/ Elazığ',
-            code: '',
-            message: '',
-            status: 'inceleniyor'
+            code: 'UUU596233',
+            message: 'Üzgünüz talebini reddetmek zorundayız. Ekiplerimiz gün içinde seninle iletişime geçecektir.',
+            status: 'reddedildi'
         },
         {
             name: 'Mehmet',
@@ -24,21 +24,21 @@ export const ApplicationProvider = ({ children }) => {
             email: 'gunes1@gmail.com',
             reasonForApp: 'Fatura adresi değişme talebi',
             address: 'Keçiören/ Ankara',
-            code: '',
-            message: '',
+            code: 'FAA889455',
+            message: 'Gerekli kontroller sağlandıktan sonra sizinle iletişime geçeceğiz',
             status: 'inceleniyor'
         },
         {
             name: 'Melisa',
-            surname: 'Ay',
-            age: '44',
+            surname: 'Yıldız',
+            age: '27',
             identityID: '33957522457',
-            email: 'aymelisa@gmail.com',
-            reasonForApp: 'Hesap dondurma veya silme talebi',
+            email: 'yildizmelisa@gmail.com',
+            reasonForApp: 'Askıya alınan hesabı tekrar açma talebi',
             address: 'Alanya/ Antalya',
-            code: '',
-            message: '',
-            status: 'inceleniyor'
+            code: 'TTT977115',
+            message: 'Hesabınız tekrar kullanıma açılmıştır.',
+            status: 'onaylandı'
         },
     ]);
 
