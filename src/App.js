@@ -22,7 +22,7 @@ function App() {
                         <Route path="/basvuru-listesi" component={Management} />
                         <Route path="/basvuru-sorgula" component={ApplyCheck} />
                         <Route path="/admin" component={Login} />
-                        <Route path="/basvuru-detay" component={ApplyDetail} />
+                        <Route path="/basvuru-detay/:code" component={ApplyDetail} />
                         <Route path="/basvuru-basarili" component={ApplySuccess} />
                         <Route path="*" component={Page404} />
                     </Switch>

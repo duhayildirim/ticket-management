@@ -1,4 +1,5 @@
 import { useApply } from '../context/ApplicationContext';
+import { Link } from 'react-router-dom/cjs/react-router-dom';
 
 function Management() {
     const { applications } = useApply();
@@ -25,9 +26,9 @@ function Management() {
                                                     <p><strong style={{color: 'red'}}>Başvuru durumu: </strong>{app.status}</p>
                                                 </div>
                                                 <div className="col-md-3">
-                                                    <button className="mt-4 btn btn-primary w-75 py-3" type="submit">
+                                                    <Link to={`/basvuru-detay/${app.code}`} className="mt-4 btn btn-primary w-75 py-3">
                                                         Detay <i className="fa fa-eye"></i>
-                                                    </button>
+                                                    </Link>
                                                 </div>
                                             </div>
                                         </div>
