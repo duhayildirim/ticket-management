@@ -10,11 +10,20 @@ function Navbar() {
                 <button type="button" className="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                <div className="collapse navbar-collapse" id="navbarCollapse">
-                    <div className="navbar-nav ms-auto p-4 p-lg-0">
+                <div className="collapse navbar-collapse ms-auto" id="navbarCollapse">
+                    <div className="navbar-nav p-4 p-lg-0">
+                        <Link to="/basvuru-listesi" className="nav-item nav-link">Başvuru Listesi</Link>
+                    </div>
+                    <div className="navbar-nav p-4 ms-auto p-lg-0">
                         <Link to="/basvuru-sorgula" className="nav-item nav-link">Başvuru Sorgula</Link>
                     </div>
-                    <Link to="/admin" className="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Giriş Yap<i className="fa fa-arrow-right ms-3"></i></Link>
+                    <div className="navbar-nav p-4 p-lg-0">
+                        <div className='btn btn-primary'>
+                            <Link to="/admin" className="nav-item nav-link" style={{ color : 'white', paddingLeft: '33px' }}>
+                                Giriş Yap <i className="fa fa-arrow-right ms-3" style={{ color : 'white' }}></i>
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             </nav>
         </>
@@ -22,3 +31,6 @@ function Navbar() {
 }
 
 export default Navbar;
+
+
+{/* <Link to="/admin" className="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Giriş Yap<i className="fa fa-arrow-right ms-3"></i></Link> */}

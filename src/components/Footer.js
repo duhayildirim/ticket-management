@@ -10,7 +10,7 @@ function Footer() {
                             <div className="d-flex py-5 px-4">
                                 <i className="fa fa-certificate fa-3x text-primary flex-shrink-0"></i>
                                 <div className="ps-4">
-                                    <h5 className="mb-3">Kolay ve etkili</h5>
+                                    <h5 className="mb-3">Kolay ve Etkili</h5>
                                     <p>Başvuru sürecinin karmaşıklığını ortadan kaldırır</p>
                                 </div>
                             </div>

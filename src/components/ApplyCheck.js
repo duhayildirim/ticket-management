@@ -45,7 +45,7 @@ function ApplyCheck() {
             <div className="container-xxl py-5">
                 <div className="container">
                     <div className="text-center wow fadeInUp" data-wow-delay="0.1s">
-                        <h1 className="mb-5">BAŞVURU ARA</h1>
+                        <h1 className="mb-5">BAŞVURU SORGULA</h1>
                     </div>
                     <div className="row g-4">
                         <div className="col-md-12">
@@ -121,7 +121,41 @@ function ApplyCheck() {
                             </div>
                         </div>
                     </div>
-                ) : null
+                ) : (
+                    <div className="container-xxl">
+                        <div className="container">
+                            <div className="row g-4">
+                                <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                                    <div className="d-flex py-5 px-4">
+                                        <i className="fa fa-envelope fa-3x text-primary flex-shrink-0"></i>
+                                        <div className="ps-4">
+                                            <h5 className="mb-3">Hızlı Cevap</h5>
+                                            <p>Başvurularınız ekiplerimiz tarafından hızlı sonuçlandırılır</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                                    <div className="d-flex py-5 px-4">
+                                        <i className="fa fa-business-time fa-3x text-primary flex-shrink-0"></i>
+                                        <div className="ps-4">
+                                            <h5 className="mb-3">Bütün Çözüm</h5>
+                                            <p>Aynı anda birden fazla başvuru</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                                    <div className="d-flex py-5 px-4">
+                                        <i className="fa fa-money-bill fa-3x text-primary flex-shrink-0"></i>
+                                        <div className="ps-4">
+                                            <h5 className="mb-3">Ücretsiz</h5>
+                                            <p>Başvuru sürecinizin hiçbir adımında para talep edilmez.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )
             }
         </>
     );
