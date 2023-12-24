@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect, useContext } from 'react';
 
 const UserContext = createContext();
 
@@ -33,4 +33,14 @@ export const UserProvider = ({ children }) => {
     };
 
     return <UserContext.Provider value={values}>{children}</UserContext.Provider>;
+};
+
+export const useLogin = () => {
+    const context = useContext(UserContext);
+
+    if(context === undefined){
+        throw new Error('useLogin must be used within a UserProvider');
+    }
+
+    return context;
 };
