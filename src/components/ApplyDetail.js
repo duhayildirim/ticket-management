@@ -3,7 +3,6 @@ import { adminMessageValidations } from '../common/validations';
 import { useParams } from 'react-router-dom/cjs/react-router-dom';
 import { useApply } from '../context/ApplicationContext';
 import Loading from '../common/loading';
-import { useEffect } from 'react';
 
 function ApplyDetail() {
     const { code } = useParams();
@@ -44,10 +43,6 @@ function ApplyDetail() {
         },
         validationSchema: adminMessageValidations,
     });
-    
-    useEffect(() => {
-        console.log(applications);
-    }, [applications]);
 
     if (!apply) {
         return <Loading />;
