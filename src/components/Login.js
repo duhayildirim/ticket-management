@@ -1,14 +1,28 @@
 import { useFormik } from 'formik';
 import { loginValidations } from '../common/validations';
+import { useLogin } from '../context/UserContext';
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 function Login() {
+    const { username, password, setIsActive } = useLogin();
+    const [ loginErrMessage, setLoginErrMessage ] = useState(false);
+    const history = useHistory();
+
     const { handleChange, handleSubmit, values, errors, touched, handleBlur } = useFormik({
         initialValues: {
             username: '',
             password: ''
         },
         onSubmit: values => {
-            console.log(values);
+            if(values.username === username && values.password === password){
+                setLoginErrMessage(false);
+                setIsActive(true);
+                history.push('/basvuru-listesi');
+            } else {
+                setLoginErrMessage(true);
+            }
+
         },
         validationSchema: loginValidations,
     });
@@ -37,7 +51,7 @@ function Login() {
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-12">
+                    <div className="col-md-12 mt-5">
                         <div className="wow fadeInUp" data-wow-delay="0.2s">
                             <form onSubmit={handleSubmit}>
                                 <div className="row g-3">
@@ -77,11 +91,16 @@ function Login() {
                                             </small>
                                         )}
                                     </div>
-                                    <div className="col-md-5"></div>
-                                    <div className="col-2">
-                                        <button className="btn btn-primary w-100 py-3" type="submit">Giriş Yap</button>
+                                    <div className="col-md-4"></div>
+                                    <div className="col-4">
+                                        {
+                                            loginErrMessage && <span className='d-flex justify-content-center py-3' style={{ textDecoration: 'underline', textDecorationColor: '#0B2154', color: '#b8101f' }}>
+                                                Hatalı kullanıcı adı veya parola !
+                                            </span>
+                                        }
+                                        <button className="btn btn-primary w-100 py-3 d-flex justify-content-center mt-3" type="submit">Giriş Yap</button>
                                     </div>
-                                    <div className="col-md-5"></div>
+                                    <div className="col-md-4"></div>
                                 </div>
                             </form>
                         </div>
