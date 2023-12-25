@@ -2,25 +2,15 @@ import { createContext, useState, useEffect, useContext } from 'react';
 
 const UserContext = createContext();
 
-const localUsername = localStorage.getItem('username') || 'kodluyoruz'; 
-const localPassword = localStorage.getItem('password') || 'bootcamp109';
-const localIsActive = localStorage.getItem('isActive') || false;
-
 export const UserProvider = ({ children }) => {
-    const [ username, setUsername ] = useState(localUsername);
-    const [ password, setPassword ] = useState(localPassword);
-    const [ isActive, setIsActive ] = useState(localIsActive);
+    const [ username, setUsername ] = useState(localStorage.getItem('username') || 'kodluyoruz');
+    const [ password, setPassword ] = useState(localStorage.getItem('password') || 'bootcamp109');
+    const [ isActive, setIsActive ] = useState(localStorage.getItem('isActive') === 'true');
 
     useEffect(() => {
-        if (!localStorage.getItem('username')) {
-            localStorage.setItem('username', username);
-        }
-        if (!localStorage.getItem('password')) {
-            localStorage.setItem('password', password);
-        }
-        if (!localStorage.getItem('isActive')) {
-            localStorage.setItem('isActive', isActive.toString());
-        }
+        localStorage.setItem('username', username);
+        localStorage.setItem('password', password);
+        localStorage.setItem('isActive', isActive.toString());
     }, [username, password, isActive]);
 
     const values = {
