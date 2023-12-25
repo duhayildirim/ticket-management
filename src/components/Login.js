@@ -55,11 +55,11 @@ function Login() {
                         <div className="wow fadeInUp" data-wow-delay="0.2s">
                             <form onSubmit={handleSubmit}>
                                 <div className="row g-3">
-                                    <div className="col-md-6">
-                                        <div className="form-floating">
+                                    <div className="col-md-12 d-flex align-items-center justify-content-center">
+                                        <div className="form-floating w-50">
                                             <input
                                                 type="text"
-                                                className="form-control"
+                                                className="form-control "
                                                 name="username"
                                                 onChange={handleChange}
                                                 value={values.username}
@@ -67,14 +67,16 @@ function Login() {
                                             />
                                             <label htmlFor="username">Kullanıcı adı</label>
                                         </div>
-                                        {errors.username && touched.username && (
-                                            <small style={{ textDecoration: 'underline', textDecorationColor: '#0B2154', color: '#b8101f' }}>
+                                    </div>
+                                    {errors.username && touched.username && ( // Hata mesajı burada kontrol edilecek
+                                        <div className="col-md-12">
+                                            <small className="d-flex justify-content-center" style={{ textDecoration: 'underline', textDecorationColor: '#0B2154', color: '#b8101f' }}>
                                                 {errors.username}
                                             </small>
-                                        )}
-                                    </div>
-                                    <div className="col-md-6">
-                                        <div className="form-floating">
+                                        </div>
+                                    )}
+                                    <div className="col-md-12 d-flex align-items-center justify-content-center">
+                                        <div className="form-floating w-50">
                                             <input
                                                 type="password"
                                                 className="form-control"
@@ -85,19 +87,21 @@ function Login() {
                                             />
                                             <label htmlFor="password">Password</label>
                                         </div>
-                                        {errors.password && touched.password && (
-                                            <small style={{ textDecoration: 'underline', textDecorationColor: '#0B2154', color: '#b8101f' }}>
+                                    </div>
+                                    {errors.password && touched.password && ( // Hata mesajı burada kontrol edilecek
+                                        <div className="col-md-12">
+                                            <small className="d-flex justify-content-center" style={{ textDecoration: 'underline', textDecorationColor: '#0B2154', color: '#b8101f' }}>
                                                 {errors.password}
                                             </small>
-                                        )}
-                                    </div>
+                                        </div>
+                                    )}
                                     <div className="col-md-4"></div>
                                     <div className="col-4">
-                                        {
-                                            loginErrMessage && <span className='d-flex justify-content-center py-3' style={{ textDecoration: 'underline', textDecorationColor: '#0B2154', color: '#b8101f' }}>
+                                        {loginErrMessage && (
+                                            <span className='d-flex justify-content-center py-3' style={{ textDecoration: 'underline', textDecorationColor: '#0B2154', color: '#b8101f' }}>
                                                 Hatalı kullanıcı adı veya parola !
                                             </span>
-                                        }
+                                        )}
                                         <button className="btn btn-primary w-100 py-3 d-flex justify-content-center mt-3" type="submit">Giriş Yap</button>
                                     </div>
                                     <div className="col-md-4"></div>

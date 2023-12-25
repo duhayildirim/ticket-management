@@ -2,7 +2,11 @@ import { Link } from 'react-router-dom/cjs/react-router-dom';
 import { useLogin } from '../context/UserContext';
 
 function Navbar() {
-    const { isActive } = useLogin();
+    const { isActive, setIsActive } = useLogin();
+
+    const handleClick = () => {
+        setIsActive(false);
+    };
 
     return (
         <>
@@ -24,7 +28,7 @@ function Navbar() {
                             </div>
                             <div className="navbar-nav p-4 p-lg-0">
                                 <div className='btn btn-primary'>
-                                    <Link to="/admin" className="nav-item nav-link" style={{ color : 'white', paddingLeft: '33px' }}>
+                                    <Link onClick={handleClick} to="/basvuru-olustur" className="nav-item nav-link" style={{ color : 'white', paddingLeft: '33px' }}>
                                         Çıkış Yap <i className="fa fa-arrow-left ms-3" style={{ color : 'white' }}></i>
                                     </Link>
                                 </div>
