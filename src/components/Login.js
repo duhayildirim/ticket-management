@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 function Login() {
-    const { username, password, setIsActive } = useLogin();
+    const { user, setUser } = useLogin();
     const [ loginErrMessage, setLoginErrMessage ] = useState(false);
     const history = useHistory();
 
@@ -15,9 +15,12 @@ function Login() {
             password: ''
         },
         onSubmit: values => {
-            if(values.username === username && values.password === password){
+            if(values.username === user.username && values.password === user.password){
                 setLoginErrMessage(false);
-                setIsActive(true);
+                setUser(prevUser => ({
+                    ...prevUser,
+                    isActive: 'true'
+                }));
                 history.push('/basvuru-listesi');
             } else {
                 setLoginErrMessage(true);

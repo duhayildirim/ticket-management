@@ -2,10 +2,13 @@ import { Link } from 'react-router-dom/cjs/react-router-dom';
 import { useLogin } from '../context/UserContext';
 
 function Navbar() {
-    const { isActive, setIsActive } = useLogin();
+    const { user, setUser } = useLogin();
 
     const handleClick = () => {
-        setIsActive(false);
+        setUser(prev => ({
+            ...prev,
+            isActive: false
+        }));
     };
 
     return (
@@ -18,7 +21,7 @@ function Navbar() {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse ms-auto" id="navbarCollapse">
-                    {isActive ? 
+                    {user.isActive ? 
                         <>
                             <div className="navbar-nav p-4 ms-auto p-lg-0">
                                 <Link to="/basvuru-listesi" className="nav-item nav-link">Başvuru Listesi</Link>

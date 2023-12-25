@@ -3,23 +3,23 @@ import { createContext, useState, useEffect, useContext } from 'react';
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-    const [ username, setUsername ] = useState(localStorage.getItem('username') || 'kodluyoruz');
-    const [ password, setPassword ] = useState(localStorage.getItem('password') || 'bootcamp109');
-    const [ isActive, setIsActive ] = useState(localStorage.getItem('isActive') === 'true');
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+
+    const initialUser = {
+        username: storedUser ? storedUser.username : 'kodluyoruz',
+        password: storedUser ? storedUser.password : 'bootcamp109',
+        isActive: storedUser ? storedUser.isActive === 'true' : false,
+    };
+
+    const [user, setUser] = useState(initialUser);
 
     useEffect(() => {
-        localStorage.setItem('username', username);
-        localStorage.setItem('password', password);
-        localStorage.setItem('isActive', isActive.toString());
-    }, [username, password, isActive]);
+        localStorage.setItem('user', JSON.stringify(user));
+    }, [user]);
 
     const values = {
-        username,
-        password,
-        isActive,
-        setUsername,
-        setPassword,
-        setIsActive,
+        user,
+        setUser,
     };
 
     return <UserContext.Provider value={values}>{children}</UserContext.Provider>;
@@ -28,7 +28,7 @@ export const UserProvider = ({ children }) => {
 export const useLogin = () => {
     const context = useContext(UserContext);
 
-    if(context === undefined){
+    if (context === undefined) {
         throw new Error('useLogin must be used within a UserProvider');
     }
 
