@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom/cjs/react-router-dom';
 
 function Management() {
     const { applications } = useApply();
+    const reversedKeys = Object.keys(applications).reverse();
+    const reversedApplications = reversedKeys.map(key => applications[key]);
 
     return (
         <>
@@ -15,7 +17,7 @@ function Management() {
                     <div className="owl-carousel testimonial-carousel position-relative">
                         {
                             applications && applications.length > 0 ? (
-                                applications.map((app, index) => (
+                                reversedApplications.map((app, index) => (
                                     <div key={index} className="testimonial-item mt-4">
                                         <div className="testimonial-text bg-light p-3">
                                             <div className="row g-3">
