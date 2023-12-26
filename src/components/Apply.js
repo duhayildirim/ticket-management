@@ -5,7 +5,7 @@ import { useApply } from '../context/ApplicationContext';
 import { useHistory } from 'react-router-dom';
 
 function Apply() {
-    const { setApplications } = useApply();
+    const { addApplication } = useApply();
     const history = useHistory();
 
     const { handleChange, handleSubmit, values, errors, touched, handleBlur } = useFormik({
@@ -26,7 +26,7 @@ function Apply() {
                 message: '',
                 status: 'inceleniyor'
             };
-            setApplications(prev => [...prev, newApplication]);
+            addApplication(newApplication);
             history.push('/basvuru-basarili', { code: generatedCode });
         },
         validationSchema: applyValidations,

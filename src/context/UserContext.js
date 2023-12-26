@@ -8,7 +8,7 @@ export const UserProvider = ({ children }) => {
     const initialUser = {
         username: storedUser ? storedUser.username : 'kodluyoruz',
         password: storedUser ? storedUser.password : 'bootcamp109',
-        isActive: storedUser ? storedUser.isActive === 'true' : false,
+        isActive: storedUser ? storedUser.isActive === true : false,
     };
 
     const [user, setUser] = useState(initialUser);

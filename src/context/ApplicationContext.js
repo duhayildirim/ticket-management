@@ -1,9 +1,9 @@
-import { createContext, useState, useContext } from 'react';
+import { createContext, useState, useContext, useEffect } from 'react';
 
 const ApplicationContext = createContext();
 
 export const ApplicationProvider = ({ children }) => {
-    const  [ applications , setApplications ] = useState([
+    const initialApp = [
         {
             name: 'Duha',
             surname: 'Yıldırım',
@@ -40,21 +40,59 @@ export const ApplicationProvider = ({ children }) => {
             message: 'Hesabınız tekrar kullanıma açılmıştır.',
             status: 'onaylandı'
         },
-    ]);
+    ];
+
+    const [applications, setApplications] = useState([]);
+
+    useEffect(() => {
+        const storedApps = JSON.parse(localStorage.getItem('apps'));
+        if (!storedApps || storedApps.length === 0) {
+            localStorage.setItem('apps', JSON.stringify(initialApp));
+            setApplications(initialApp);
+        } else {
+            setApplications(storedApps);
+        }
+    }, []);
+
+    const addApplication = (newApplication) => {
+        const updatedApplications = [...applications, newApplication];
+        setApplications(updatedApplications);
+        localStorage.setItem('apps', JSON.stringify(updatedApplications));
+    };
+
+    const updateApplication = (code, updatedValues) => {
+        const updatedApplications = applications.map((app) => {
+            if (app.code === code) {
+                return {
+                    ...app,
+                    ...updatedValues
+                };
+            }
+            return app;
+        });
+
+        setApplications(updatedApplications);
+        localStorage.setItem('apps', JSON.stringify(updatedApplications));
+    };
 
     const values = {
         applications,
-        setApplications
+        addApplication,
+        updateApplication
     };
 
-    return <ApplicationContext.Provider value={values}>{children}</ApplicationContext.Provider>;
+    return (
+        <ApplicationContext.Provider value={values}>
+            {children}
+        </ApplicationContext.Provider>
+    );
 };
 
 export const useApply = () => {
     const context = useContext(ApplicationContext);
 
-    if(context === undefined){
-        throw new Error('useApply must be used within a ApplicationsProvider');
+    if (context === undefined) {
+        throw new Error('useApply must be used within an ApplicationProvider');
     }
 
     return context;

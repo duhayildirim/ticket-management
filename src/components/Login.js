@@ -19,7 +19,7 @@ function Login() {
                 setLoginErrMessage(false);
                 setUser(prevUser => ({
                     ...prevUser,
-                    isActive: 'true'
+                    isActive: true
                 }));
                 history.push('/basvuru-listesi');
             } else {

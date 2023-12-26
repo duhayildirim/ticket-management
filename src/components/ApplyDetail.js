@@ -6,7 +6,7 @@ import Loading from '../common/loading';
 
 function ApplyDetail() {
     const { code } = useParams();
-    const { applications, setApplications } = useApply();
+    const { applications, updateApplication } = useApply();
     
     const applyFiltered = applications.filter((app) => {
         return app.code.includes(code);
@@ -28,18 +28,7 @@ function ApplyDetail() {
             status: applyStatus
         },
         onSubmit: values => {
-            const updatedApplications = applications.map((app) => {
-                if (app.code === code) {
-                    return {
-                        ...app,
-                        message: values.message,
-                        status: values.status
-                    };
-                }
-                return app;
-            });
-
-            setApplications(updatedApplications);
+            updateApplication(code, values);
         },
         validationSchema: adminMessageValidations,
     });
