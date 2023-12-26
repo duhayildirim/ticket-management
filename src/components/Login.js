@@ -3,11 +3,13 @@ import { loginValidations } from '../common/validations';
 import { useLogin } from '../context/UserContext';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import Loading from '../common/loading';
 
 function Login() {
     const { user, setUser } = useLogin();
     const [ loginErrMessage, setLoginErrMessage ] = useState(false);
     const history = useHistory();
+    const [ loading, setLoading ] = useState(false);
 
     const { handleChange, handleSubmit, values, errors, touched, handleBlur } = useFormik({
         initialValues: {
@@ -16,16 +18,17 @@ function Login() {
         },
         onSubmit: values => {
             if(values.username === user.username && values.password === user.password){
+                setLoading(true);
                 setLoginErrMessage(false);
                 setUser(prevUser => ({
                     ...prevUser,
                     isActive: true
                 }));
+                setLoading(false);
                 history.push('/basvuru-listesi');
             } else {
                 setLoginErrMessage(true);
             }
-
         },
         validationSchema: loginValidations,
     });
@@ -71,7 +74,7 @@ function Login() {
                                             <label htmlFor="username">Kullanıcı adı</label>
                                         </div>
                                     </div>
-                                    {errors.username && touched.username && ( // Hata mesajı burada kontrol edilecek
+                                    {errors.username && touched.username && (
                                         <div className="col-md-12">
                                             <small className="d-flex justify-content-center" style={{ textDecoration: 'underline', textDecorationColor: '#0B2154', color: '#b8101f' }}>
                                                 {errors.username}
@@ -91,7 +94,7 @@ function Login() {
                                             <label htmlFor="password">Password</label>
                                         </div>
                                     </div>
-                                    {errors.password && touched.password && ( // Hata mesajı burada kontrol edilecek
+                                    {errors.password && touched.password && (
                                         <div className="col-md-12">
                                             <small className="d-flex justify-content-center" style={{ textDecoration: 'underline', textDecorationColor: '#0B2154', color: '#b8101f' }}>
                                                 {errors.password}
@@ -105,7 +108,11 @@ function Login() {
                                                 Hatalı kullanıcı adı veya parola !
                                             </span>
                                         )}
-                                        <button className="btn btn-primary w-100 py-3 d-flex justify-content-center mt-3" type="submit">Giriş Yap</button>
+                                        {loading ? <Loading/> : (
+                                            <button className="btn btn-primary w-100 py-3 d-flex justify-content-center mt-3" type="submit">
+                                                Giriş Yap
+                                            </button>
+                                        )}
                                     </div>
                                     <div className="col-md-4"></div>
                                 </div>

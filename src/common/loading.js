@@ -1,18 +1,10 @@
 function Loading() {
     return (
-        <div className="container">
-            <div className="row">
-                <div className="col-md-5"></div>
-                <div className="col-md-2">
-                    <div id="spinner" className="show bg-white translate-middle">
-                        <div className="spinner-border text-primary" role="status">
-                            <span className="sr-only">Loading...</span>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-md-5"></div>
-            </div>
-        </div>
+        <button className="btn btn-primary w-100 py-3 d-flex justify-content-center mt-3" disabled type="submit">
+            <div className="spinner-border" role="status">
+                <span className="sr-only">Loading...</span>
+            </div>    
+        </button>
     );
 }
 
