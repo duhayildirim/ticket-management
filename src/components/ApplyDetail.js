@@ -53,46 +53,46 @@ function ApplyDetail() {
                     <h1 className="mb-5">Başvuru Detayı</h1>
                 </div>
                 <div className="owl-carousel testimonial-carousel position-relative">
-                    <div className="testimonial-item text-center mt-5 mb-4">
-                        <h5 className="mb-3">{apply.name} {apply.surname}</h5>
-                        <p><strong>Kod: </strong>{apply.code}</p>
-                        <p><strong>Email: </strong>{apply.email}</p>
-                        <p><strong>TC: </strong>{apply.identityID}</p>
-                        <p><strong>Adres: </strong>{apply.address}</p>
-                        <div className="testimonial-text text-center p-1 mb-4">
-                            <h6 className="mb-1">Başvuru nedeni:</h6>
-                            <p className="mb-1">{apply.reasonForApp}</p>
-                        </div>
-                        <div className="testimonial-text bg-light text-center p-4">
-                            <div className="col-md-12">
-                                <div className="wow fadeInUp" data-wow-delay="0.2s">
+                    <div className="testimonial-item mt-4">
+                        <div className="testimonial-text bg-light p-3">
+                            <div className="row g-3 p-4">
+                                <h5 className="text-center mb-2">{apply.name} {apply.surname}</h5>
+                                <div className="col-md-6">
+                                    <p><strong>Kod: </strong>{apply.code}</p>
+                                    <p><strong>Email: </strong>{apply.email}</p>
+                                    <p><strong>TC: </strong>{apply.identityID}</p>
+                                    <p><strong>Adres: </strong>{apply.address}</p>
+                                    <p><strong>Başvuru nedeni: </strong>{apply.reasonForApp}</p>
+                                </div>
+                                <div className="col-md-6">
                                     <form onSubmit={handleSubmit}>
-                                        <div className="row g-3">
-                                            <div className="col-md-6">
+                                        <div className="col-md-12 d-flex align-items-center justify-content-center">
+                                            <div className="w-100">
                                                 <label className="mb-2" htmlFor="message">Başvuru sahibine mesaj gönder:</label>
-                                                <div>
-                                                    <textarea name="message" type="text" className="form-control"
-                                                        onChange={handleChange} value={values.message} onBlur={handleBlur} />
-                                                </div>
+                                                <textarea name="message" type="text" className="form-control"
+                                                    onChange={handleChange} value={values.message} onBlur={handleBlur} />
                                                 {
-                                                    errors.message && touched.message && <small style={{ textDecoration: 'underline', textDecorationColor: '#0B2154', color: '#b8101f' }}>
+                                                    errors.message && touched.message && <small style={{ textDecoration: 'underline', textDecorationColor: '#0B2154',color: '#b8101f' }}>
                                                         {errors.message}
                                                     </small>
                                                 }
                                             </div>
-                                            <div className="col-md-4 mr-4">
+                                            
+                                        </div>
+                                        <div className="col-md-12 d-flex align-items-center justify-content-center mt-3">
+                                            <div className="w-100">
                                                 <label className="mb-2" htmlFor="status">Başvuru durumunu güncelle:</label>
-                                                <div>
-                                                    <select name="status" className="form-select border-0 ml-5"
-                                                        onChange={handleChange} value={values.status}>
-                                                        <option value={'inceleniyor'}>İnceleniyor</option>
-                                                        <option value={'reddedildi'}>Reddedildi</option>
-                                                        <option value={'onaylandı'}>Onaylandı</option>
-                                                    </select>
-                                                </div>
+                                                <select name="status" className="form-select border-0 ml-5"
+                                                    onChange={handleChange} value={values.status}>
+                                                    <option value={'inceleniyor'}>İnceleniyor</option>
+                                                    <option value={'reddedildi'}>Reddedildi</option>
+                                                    <option value={'onaylandı'}>Onaylandı</option>
+                                                </select>
                                             </div>
-                                            <div className="col-md-2">
-                                                <button className="mt-4 btn btn-primary w-100 py-3" type="submit">Kaydet</button>
+                                        </div>
+                                        <div className="col-md-12">
+                                            <div className="w-100 d-flex align-items-center justify-content-center">
+                                                <button className="mt-4 btn btn-primary py-3 w-50" type="submit">Kaydet</button>
                                             </div>
                                         </div>
                                     </form>

@@ -3,10 +3,13 @@ import { applyValidations } from '../common/validations';
 import codeGenerator from '../common/codeGenerator';
 import { useApply } from '../context/ApplicationContext';
 import { useHistory } from 'react-router-dom';
+import Loading from '../common/loading';
+import { useState } from 'react';
 
 function Apply() {
     const { addApplication } = useApply();
     const history = useHistory();
+    const [ loading, setLoading ] = useState(false);
 
     const { handleChange, handleSubmit, values, errors, touched, handleBlur } = useFormik({
         initialValues: {
@@ -19,15 +22,19 @@ function Apply() {
             address: 'merkez/ elazığ'
         },
         onSubmit: values => {
-            const generatedCode = codeGenerator();
-            const newApplication = {
-                ...values,
-                code: generatedCode,
-                message: '',
-                status: 'inceleniyor'
-            };
-            addApplication(newApplication);
-            history.push('/basvuru-basarili', { code: generatedCode });
+            setLoading(true);
+            setTimeout(() => {
+                const generatedCode = codeGenerator();
+                const newApplication = {
+                    ...values,
+                    code: generatedCode,
+                    message: '',
+                    status: 'inceleniyor'
+                };
+                addApplication(newApplication);
+                setLoading(false);
+                history.push('/basvuru-basarili', { code: generatedCode });
+            }, 4000);
         },
         validationSchema: applyValidations,
     });
@@ -99,7 +106,12 @@ function Apply() {
                                             }
                                         </div>
                                         <div className="col-12">
-                                            <button className="btn btn-secondary w-100 py-3" type="submit">Başvur</button>
+                                            {
+                                                loading ? <Loading/> : (
+                                                    <button className="btn btn-secondary w-100 py-3" type="submit">Başvur</button>
+                                                )
+                                            }
+                                            
                                         </div>
                                     </div>
                                 </form>
