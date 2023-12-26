@@ -105,10 +105,10 @@ function Apply() {
                                                 errors.address && touched.address && <small style={{ textDecoration: 'underline', textDecorationColor: '#0B2154', color:    'white' }}>{errors.address}</small>
                                             }
                                         </div>
-                                        <div className="col-12">
+                                        <div className="col-12 d-flex align-items-center justify-content-center">
                                             {
                                                 loading ? <Loading/> : (
-                                                    <button className="btn btn-secondary w-100 py-3" type="submit">Başvur</button>
+                                                    <button className="btn btn-secondary w-50 py-3" type="submit">Başvur</button>
                                                 )
                                             }
                                             

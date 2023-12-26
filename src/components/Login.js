@@ -108,11 +108,13 @@ function Login() {
                                                 Hatalı kullanıcı adı veya parola !
                                             </span>
                                         )}
-                                        {loading ? <Loading/> : (
-                                            <button className="btn btn-primary w-100 py-3 d-flex justify-content-center mt-3" type="submit">
-                                                Giriş Yap
-                                            </button>
-                                        )}
+                                        <div className="d-flex justify-content-center">
+                                            {loading ? <Loading/> : (
+                                                <button className="btn btn-primary w-50 py-3 d-flex justify-content-center mt-3" type="submit">
+                                                    Giriş Yap
+                                                </button>
+                                            )}
+                                        </div>
                                     </div>
                                     <div className="col-md-4"></div>
                                 </div>

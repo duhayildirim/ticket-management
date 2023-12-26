@@ -3,11 +3,13 @@ import { adminMessageValidations } from '../common/validations';
 import { useParams, useHistory } from 'react-router-dom/cjs/react-router-dom';
 import { useApply } from '../context/ApplicationContext';
 import Loading from '../common/loading';
+import { useState } from 'react';
 
 function ApplyDetail() {
     const { code } = useParams();
     const { applications, updateApplication } = useApply();
     const history = useHistory();
+    const [ loading, setLoading ] = useState(false);
 
     const applyFiltered = applications.filter((app) => {
         return app.code.includes(code);
@@ -35,7 +37,9 @@ function ApplyDetail() {
             status: applyStatus
         },
         onSubmit: values => {
+            setLoading(true);
             updateApplication(code, values);
+            setLoading(false);
             history.push('/basvuru-listesi');
         },
         validationSchema: adminMessageValidations,
@@ -92,7 +96,9 @@ function ApplyDetail() {
                                         </div>
                                         <div className="col-md-12">
                                             <div className="w-100 d-flex align-items-center justify-content-center">
-                                                <button className="mt-4 btn btn-primary py-3 w-50" type="submit">Kaydet</button>
+                                                {loading ? <Loading/> : (
+                                                    <button className="mt-4 btn btn-primary py-3 w-50" type="submit">Kaydet</button>
+                                                )}
                                             </div>
                                         </div>
                                     </form>

@@ -2,10 +2,12 @@ import { useApply } from '../context/ApplicationContext';
 import { useState } from 'react';
 import { useFormik } from 'formik';
 import { useHistory } from 'react-router-dom';
+import Loading from '../common/loading';
 
 function ApplyCheck() {
     const [ showErr, setShowErr] = useState(false);
     const [ filteredData, setFilteredData ] = useState();
+    const [ loading, setLoading ] = useState(false);
     const { applications } = useApply();
     const history = useHistory();
 
@@ -15,15 +17,19 @@ function ApplyCheck() {
         },
         onSubmit: values => {
             if(values.search.length > 0){
+                setLoading(true);
                 setShowErr(false);
                 const result = applications.filter((app) => {
                     return app.code.includes(values.search);
                 });
                 if(result[0]){
+                    setLoading(false);
                     setFilteredData(result[0]);
                 } else {
+                    setLoading(false);
                     history.push('/error');
                 }
+                setLoading(false);
             } else {
                 setShowErr(true);
             }
@@ -53,22 +59,23 @@ function ApplyCheck() {
                                 <div className="wow fadeInUp" data-wow-delay="0.2s">
                                     <div className="row g-3">
                                         <div className="col-md-12">
-                                            <div className="form-floating">
-                                                <input type="text"  className="form-control" name="search" id="search" value={values.search} onChange={handleChange}/>
-                                                <label htmlFor="search">Kodunu  gir:</label>
+                                            <label htmlFor="search" className='d-flex align-items-center justify-content-center mb-2'>Kodunu gir:</label>
+                                            <div className="p-1 mb-2 d-flex align-items-center justify-content-center">
+                                                <input type="text" className="form-control w-50 p-3 d-flex align-items-center justify-content-center " name="search" id="search" value={values.search} onChange={handleChange}/>
                                             </div>
                                             {
-                                                showErr == true && (<small style={{ textDecoration: 'underline', textDecorationColor: '#0B2154', color: '#b8101f' }}>
+                                                showErr == true && (<div className='d-flex align-items-center justify-content-center'> <small style={{ textDecoration: 'underline', textDecorationColor: '#0B2154', color: '#b8101f' }}>
                                                 Lütfen size verilen kodu girin.
-                                                </small>)
+                                                </small> </div>)
                                             }
                                         </div>
-                                        <div className="col-md-5">
-                                        </div>
-                                        <div className="col-2">
-                                            <button className="btn btn-primary w-100 py-3" type="submit">Ara</button>
-                                        </div>
-                                        <div className="col-md-5">
+                                        <div className="col-md-12 d-flex align-items-center justify-content-center text-center">
+                                            {
+                                                loading ? (<div className="w-50 d-flex align-items-center justify-content-center text-center"> <Loading/> </div>) : (
+                                                    <button className="btn btn-primary w-25 p-3" type="submit">Ara</button>
+                                                )
+                                            }
+                                            
                                         </div>
                                     </div>
                                 </div>
