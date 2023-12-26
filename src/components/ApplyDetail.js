@@ -1,18 +1,25 @@
 import { useFormik } from 'formik';
 import { adminMessageValidations } from '../common/validations';
-import { useParams } from 'react-router-dom/cjs/react-router-dom';
+import { useParams, useHistory } from 'react-router-dom/cjs/react-router-dom';
 import { useApply } from '../context/ApplicationContext';
 import Loading from '../common/loading';
 
 function ApplyDetail() {
     const { code } = useParams();
     const { applications, updateApplication } = useApply();
-    
+    const history = useHistory();
+
     const applyFiltered = applications.filter((app) => {
         return app.code.includes(code);
     });
-    
+
     const apply = applyFiltered.length > 0 ? applyFiltered[0] : null;
+
+    if (!applyFiltered.length || !apply) {
+        history.push('/error');
+        window.location.reload();
+        return null;
+    }
 
     const defaultInitialValues = {
         message: 'Örnek: Başvurunuz güvenlik sebebiyle reddedilmiştir.',
@@ -29,6 +36,7 @@ function ApplyDetail() {
         },
         onSubmit: values => {
             updateApplication(code, values);
+            history.push('/basvuru-listesi');
         },
         validationSchema: adminMessageValidations,
     });
