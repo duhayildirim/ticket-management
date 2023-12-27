@@ -32,5 +32,19 @@ export const useLogin = () => {
         throw new Error('useLogin must be used within a UserProvider');
     }
 
-    return context;
+    const { user } = context;
+
+    const isAdminRoute = (path) => {
+        return path.startsWith('/admin');
+    };
+
+    const canAccessRoute = (path) => {
+        // Kontrol edilecek rotalar burada belirlenebilir
+        if (isAdminRoute(path)) {
+            return user.isActive === true; // isActive true ise erişime izin ver
+        }
+        return true; // Diğer rotalara izin ver
+    };
+
+    return { ...context, canAccessRoute };
 };

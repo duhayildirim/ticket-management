@@ -40,7 +40,7 @@ function ApplyDetail() {
             setLoading(true);
             updateApplication(code, values);
             setLoading(false);
-            history.push('/basvuru-listesi');
+            history.push('/admin/basvuru-listesi');
         },
         validationSchema: adminMessageValidations,
     });

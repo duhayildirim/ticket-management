@@ -9,55 +9,47 @@ import Page404 from './components/Page404';
 import ApplyDetail from './components/ApplyDetail';
 import ApplySuccess from './components/ApplySuccess';
 import { ApplicationProvider } from './context/ApplicationContext';
-import { UserProvider} from './context/UserContext';
-
-// const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => (
-//     <Route
-//         {...rest}
-//         render={props =>
-//             isAuthenticated ? (
-//                 <Component {...props} />
-//             ) : (
-//                 <Redirect to="/admin" />
-//             )
-//         }
-//     />
-// );
-
-
+import { useLogin } from './context/UserContext';
 
 function App() {
-    // const { user } = useLogin();
+    const { canAccessRoute } = useLogin();
 
-    // useEffect(() => {
-    //     console.log('User changed:', user);
-    // }, [user]);
-
-    // const user = JSON.parse(localStorage.getItem('user'));
-
+    const ProtectedRoute = ({ component: Component, path, ...rest }) => (
+        <Route
+            {...rest}
+            render={(props) =>
+                canAccessRoute(path) ? (
+                    <Component {...props} />
+                ) : (
+                    <>
+                        {setTimeout(() => {
+                            window.location.reload();
+                        }, 100)}
+                        <Redirect to="/admin" />
+                    </>
+                )
+            }
+        />
+    );
 
     return (
         <>
-            <UserProvider>
-                <ApplicationProvider>
-                    <Router>
-                        <Navbar />
-                        <Switch>
-                            <Redirect exact from="/" to="/basvuru-olustur" />
-                            <Route exact path="/basvuru-olustur" component={Apply} />
-                            <Route path="/basvuru-sorgula" component={ApplyCheck} />
-                            {/* <PrivateRoute path="/basvuru-detay/:code" component={ApplyDetail} isAuthenticated={user.isActive} />
-                            <PrivateRoute path="/basvuru-listesi" component={Management} isAuthenticated={user.isActive} /> */}
-                            <Route path="/basvuru-detay/:code" component={ApplyDetail} />
-                            <Route path="/basvuru-listesi" component={Management} />
-                            <Route path="/basvuru-basarili" component={ApplySuccess} />
-                            <Route path="/admin" component={Login} />
-                            <Route path="*" component={Page404} />
-                        </Switch>
-                        <Footer />
-                    </Router>
-                </ApplicationProvider>
-            </UserProvider>
+            <ApplicationProvider>
+                <Router>
+                    <Navbar />
+                    <Switch>
+                        <Redirect exact from="/" to="/basvuru-olustur" />
+                        <Route exact path="/basvuru-olustur" component={Apply} />
+                        <Route path="/basvuru-sorgula" component={ApplyCheck} />
+                        <Route path="/basvuru-basarili" component={ApplySuccess} />
+                        <Route exact path="/admin" component={Login} />
+                        <ProtectedRoute exact path="/admin/basvuru-detay/:code" component={ApplyDetail} />
+                        <ProtectedRoute exact path="/admin/basvuru-listesi" component={Management} />
+                        <Route path="*" component={Page404} />
+                    </Switch>
+                    <Footer />
+                </Router>
+            </ApplicationProvider>
         </>
     );
 }

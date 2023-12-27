@@ -28,7 +28,7 @@ function Management() {
                                                     <p><strong style={{color: 'red'}}>Başvuru durumu: </strong>{app.status}</p>
                                                 </div>
                                                 <div className="col-md-3">
-                                                    <Link to={`/basvuru-detay/${app.code}`} className="mt-4 btn btn-primary w-75 py-3">
+                                                    <Link to={`/admin/basvuru-detay/${app.code}`} className="mt-4 btn btn-primary w-75 py-3">
                                                         Detay <i className="fa fa-eye"></i>
                                                     </Link>
                                                 </div>

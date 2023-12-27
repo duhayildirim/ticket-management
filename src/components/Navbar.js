@@ -24,7 +24,7 @@ function Navbar() {
                     {user.isActive ? 
                         <>
                             <div className="navbar-nav p-4 ms-auto p-lg-0">
-                                <Link to="/basvuru-listesi" className="nav-item nav-link">Başvuru Listesi</Link>
+                                <Link to="/admin/basvuru-listesi" className="nav-item nav-link">Başvuru Listesi</Link>
                             </div>
                             <div className="navbar-nav p-4 p-lg-0">
                                 <Link to="/basvuru-sorgula" className="nav-item nav-link">Başvuru Sorgula</Link>

@@ -25,7 +25,7 @@ function Login() {
                     isActive: true
                 }));
                 setLoading(false);
-                history.push('/basvuru-listesi');
+                history.push('admin/basvuru-listesi');
             } else {
                 setLoginErrMessage(true);
             }

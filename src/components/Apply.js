@@ -13,13 +13,13 @@ function Apply() {
 
     const { handleChange, handleSubmit, values, errors, touched, handleBlur } = useFormik({
         initialValues: {
-            name: 'Duha',
-            surname: 'Yıldırım',
-            age: '38',
-            identityID: '69556922457',
-            email: 'duhayildirim@gmail.com',
-            reasonForApp: 'uçak bileti erteleme talebi',
-            address: 'merkez/ elazığ'
+            name: '',
+            surname: '',
+            age: '',
+            identityID: '',
+            email: '',
+            reasonForApp: '',
+            address: ''
         },
         onSubmit: values => {
             setLoading(true);
