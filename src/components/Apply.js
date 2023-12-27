@@ -23,18 +23,16 @@ function Apply() {
         },
         onSubmit: values => {
             setLoading(true);
-            setTimeout(() => {
-                const generatedCode = codeGenerator();
-                const newApplication = {
-                    ...values,
-                    code: generatedCode,
-                    message: '',
-                    status: 'inceleniyor'
-                };
-                addApplication(newApplication);
-                setLoading(false);
-                history.push('/basvuru-basarili', { code: generatedCode });
-            }, 4000);
+            const generatedCode = codeGenerator();
+            const newApplication = {
+                ...values,
+                code: generatedCode,
+                message: '',
+                status: 'inceleniyor'
+            };
+            addApplication(newApplication);
+            setLoading(false);
+            history.push('/basvuru-basarili', { code: generatedCode });
         },
         validationSchema: applyValidations,
     });
