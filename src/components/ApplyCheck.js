@@ -20,7 +20,7 @@ function ApplyCheck() {
                 setLoading(true);
                 setShowErr(false);
                 const result = applications.filter((app) => {
-                    return app.code.includes(values.search);
+                    return app.code === values.search;
                 });
                 if(result[0]){
                     setLoading(false);

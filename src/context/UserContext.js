@@ -39,11 +39,10 @@ export const useLogin = () => {
     };
 
     const canAccessRoute = (path) => {
-        // Kontrol edilecek rotalar burada belirlenebilir
         if (isAdminRoute(path)) {
-            return user.isActive === true; // isActive true ise erişime izin ver
+            return user.isActive === true;
         }
-        return true; // Diğer rotalara izin ver
+        return true;
     };
 
     return { ...context, canAccessRoute };
